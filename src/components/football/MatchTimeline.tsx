@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Clock, User, Flag, Whistle } from 'lucide-react';
+import { Clock, User, Flag, Play } from 'lucide-react'; // ✅ Lecserélve Whistle -> Play
 import type { Match } from '@/types/football';
 
 interface MatchEvent {
@@ -20,9 +19,8 @@ interface MatchTimelineProps {
 }
 
 export const MatchTimeline: React.FC<MatchTimelineProps> = ({ match, events }) => {
-  // Sort events by time
   const sortedEvents = [...events].sort((a, b) => a.time - b.time);
-  
+
   const renderEventIcon = (event: MatchEvent) => {
     switch (event.type) {
       case 'goal':
@@ -54,7 +52,7 @@ export const MatchTimeline: React.FC<MatchTimelineProps> = ({ match, events }) =
       case 'start':
         return (
           <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
-            <Whistle className="w-4 h-4 text-white" />
+            <Play className="w-4 h-4 text-white" />
           </div>
         );
       case 'half-time':
@@ -77,7 +75,7 @@ export const MatchTimeline: React.FC<MatchTimelineProps> = ({ match, events }) =
         );
     }
   };
-  
+
   return (
     <div className="bg-black/40 backdrop-blur-lg rounded-xl border border-white/10 p-6 shadow-lg">
       <h3 className="text-xl font-semibold text-white mb-4">Match Timeline</h3>
@@ -108,26 +106,18 @@ export const MatchTimeline: React.FC<MatchTimelineProps> = ({ match, events }) =
           <span className="text-white font-medium">{match.awayTeam.name}</span>
         </div>
       </div>
-      
+
       <div className="relative">
-        {/* Timeline line */}
         <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-700 z-0"></div>
-        
-        {/* Events */}
         <div className="space-y-6">
           {sortedEvents.map((event, index) => (
             <div key={index} className="relative flex items-start pl-12">
-              {/* Event Marker */}
               <div className="absolute left-0 top-0 z-10">
                 {renderEventIcon(event)}
               </div>
-              
-              {/* Time */}
               <div className="min-w-[40px] mr-4 font-mono">
                 <span className="text-gray-400">{event.time}'</span>
               </div>
-              
-              {/* Event Content */}
               <div className="flex-1 bg-black/30 rounded-lg p-3">
                 {event.type === 'goal' && (
                   <div className="flex flex-col">
@@ -143,7 +133,7 @@ export const MatchTimeline: React.FC<MatchTimelineProps> = ({ match, events }) =
                     )}
                   </div>
                 )}
-                
+
                 {event.type === 'yellow-card' && (
                   <div>
                     <div className="flex items-center gap-2">
@@ -155,7 +145,7 @@ export const MatchTimeline: React.FC<MatchTimelineProps> = ({ match, events }) =
                     )}
                   </div>
                 )}
-                
+
                 {event.type === 'red-card' && (
                   <div>
                     <div className="flex items-center gap-2">
@@ -167,7 +157,7 @@ export const MatchTimeline: React.FC<MatchTimelineProps> = ({ match, events }) =
                     )}
                   </div>
                 )}
-                
+
                 {event.type === 'substitution' && (
                   <div>
                     <span className="text-blue-400 font-medium">Substitution</span>
@@ -178,7 +168,7 @@ export const MatchTimeline: React.FC<MatchTimelineProps> = ({ match, events }) =
                     </div>
                   </div>
                 )}
-                
+
                 {(event.type === 'start' || event.type === 'half-time' || event.type === 'end') && (
                   <div>
                     <span className="text-gray-300 font-medium">
