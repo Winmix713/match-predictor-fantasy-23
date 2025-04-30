@@ -13,7 +13,7 @@ import {
   SidebarMenuItem,
   SidebarProvider
 } from "@/components/ui/sidebar";
-import { Calendar, Database, Trophy, Users, BarChart3, Home } from 'lucide-react';
+import { Calendar, Database, Trophy, Users, BarChart3, Home, Activity, LineChart, ChartBar } from 'lucide-react';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -29,6 +29,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     { title: "Teams", path: "/teams", icon: Users },
     { title: "Analytics", path: "/analytics", icon: BarChart3 },
   ];
+  
+  const analyticsItems = [
+    { title: "Football Analytics", path: "/football-analytics", icon: LineChart },
+    { title: "Match Analysis", path: "/analysis", icon: Activity },
+    { title: "Pattern Analysis", path: "/advanced-pattern", icon: ChartBar },
+  ];
 
   return (
     <SidebarProvider>
@@ -42,8 +48,34 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   {navigationItems.map((item) => (
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton 
-                        asChild 
-                        active={location.pathname === item.path}
+                        asChild
+                      >
+                        <a 
+                          href={item.path} 
+                          className={`flex items-center gap-3 ${
+                            location.pathname === item.path 
+                              ? 'text-blue-400' 
+                              : 'text-gray-300 hover:text-white'
+                          }`}
+                        >
+                          <item.icon className="h-5 w-5" />
+                          <span>{item.title}</span>
+                        </a>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+            
+            <SidebarGroup>
+              <SidebarGroupLabel>Analytics</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {analyticsItems.map((item) => (
+                    <SidebarMenuItem key={item.title}>
+                      <SidebarMenuButton 
+                        asChild
                       >
                         <a 
                           href={item.path} 
