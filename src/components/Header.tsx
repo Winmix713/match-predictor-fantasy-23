@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Calendar, Menu, X, ArrowRight, Bell, Search, Trophy, Brain } from 'lucide-react';
+import { Calendar, Menu, X, ArrowRight, Bell, Search, Trophy, Brain, Database } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 import FancyNavigation from './FancyNavigation';
@@ -27,6 +26,7 @@ const Header = () => {
     { text: "Mérkőzések", href: "/matches", icon: <Calendar className="w-4 h-4" /> },
     { text: "V-Sports Elemzés", href: "/analysis", icon: <Brain className="w-4 h-4" /> },
     { text: "Bajnokság", href: "/league", icon: <Trophy className="w-4 h-4" /> },
+    { text: "Irányítópult", href: "/league-management", icon: <Database className="w-4 h-4" /> }
   ];
 
   return (

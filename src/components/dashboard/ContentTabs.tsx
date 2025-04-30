@@ -8,6 +8,7 @@ import LeagueTable from '@/components/LeagueTable';
 import FormTable from '@/components/FormTable';
 import BothTeamsScored from '@/components/BothTeamsScored';
 import PredictionSystem from '@/components/PredictionSystem';
+import LeagueManagementLink from '@/components/LeagueManagementLink';
 
 interface ContentTabsProps {
   activeTab: string;
@@ -18,6 +19,10 @@ interface ContentTabsProps {
 const ContentTabs: React.FC<ContentTabsProps> = ({ activeTab, setActiveTab, isLoading }) => {
   return (
     <div className="bg-card rounded-xl overflow-hidden border border-white/5 shadow-lg">
+      <div className="p-4 flex justify-end">
+        <LeagueManagementLink />
+      </div>
+      
       <Tabs defaultValue={activeTab} className="w-full" onValueChange={setActiveTab}>
         <RovingFocusGroup asChild orientation="horizontal">
           <TabsList className="grid grid-cols-5 bg-muted/50 w-full rounded-none">

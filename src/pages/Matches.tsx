@@ -10,6 +10,7 @@ import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import IntegrationCards from "@/components/dashboard/IntegrationCards";
 import ContentTabs from "@/components/dashboard/ContentTabs";
 import MatchSchedule from "@/components/MatchSchedule";
+import LeagueManagementLink from "@/components/LeagueManagementLink";
 
 const Matches = () => {
   const [activeTab, setActiveTab] = useState("matches");
@@ -39,11 +40,12 @@ const Matches = () => {
   };
 
   const seasonSelector = (
-    <div className="relative flex items-center">
+    <div className="relative flex items-center gap-2">
       <Button variant="outline" className="bg-black/20 border-white/10 text-white flex items-center gap-2">
         <span>2023-2024 Szezon</span>
         <ChevronDown className="h-4 w-4" />
       </Button>
+      <LeagueManagementLink />
     </div>
   );
   
