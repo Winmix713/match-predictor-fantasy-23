@@ -106,9 +106,9 @@ const Index = () => {
     losses: 3,
     points: 41,
     position: 3,
-    form: ['W', 'W', 'D', 'L', 'W'],
+    form: ['W', 'W', 'D', 'L', 'W'] as ('W' | 'D' | 'L')[],
     rating: 76
-  } as const;
+  };
   
   // Sample head-to-head data
   const headToHeadData = {
@@ -140,7 +140,7 @@ const Index = () => {
       homeScore: Math.floor(Math.random() * 4),
       awayScore: Math.floor(Math.random() * 4),
       date: new Date(Date.now() - (i * 30 * 24 * 60 * 60 * 1000)).toISOString(), // Approx every 30 days back
-      status: 'FINISHED'
+      status: 'FINISHED' as 'SCHEDULED' | 'LIVE' | 'FINISHED' | 'POSTPONED'
     })),
     team1GoalsPerMatch: 1.47,
     team2GoalsPerMatch: 1.47,

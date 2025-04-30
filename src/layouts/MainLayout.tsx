@@ -42,8 +42,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   {navigationItems.map((item) => (
                     <SidebarMenuItem key={item.title}>
                       <SidebarMenuButton 
-                        asChild 
-                        active={location.pathname === item.path}
+                        asChild
                       >
                         <a 
                           href={item.path} 
