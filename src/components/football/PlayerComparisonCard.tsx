@@ -34,37 +34,52 @@ export const PlayerComparisonCard: React.FC<PlayerComparisonCardProps> = ({
   stats
 }) => {
   // Convert player stats to radar format
-  const player1Performance = {
-    team: {
-      id: player1.id,
-      name: player1.name,
-      color: player1.team?.color || '#ff3d41',
-    },
-    stats: {
-      pace: stats.player1Stats.pace,
-      shooting: stats.player1Stats.shooting,
-      passing: stats.player1Stats.passing,
-      dribbling: stats.player1Stats.dribbling,
-      defending: stats.player1Stats.defending,
-      physical: stats.player1Stats.physical
-    }
-  };
+ const player1Performance = {
+  team: {
+    id: player1.id,
+    name: player1.name,
+    color: player1.team?.color || '#ff3d41',
+  },
+  stats: {
+    pace: stats.player1Stats.pace,
+    shooting: stats.player1Stats.shooting,
+    passing: stats.player1Stats.passing,
+    dribbling: stats.player1Stats.dribbling,
+    defending: stats.player1Stats.defending,
+    physical: stats.player1Stats.physical,
+    shots: 0,
+    passes: 0,
+    crosses: 0,
+    corners: 0,
+    duels: 0,
+    fouls: 0,
+    rating: stats.player1Stats.rating
+  }
+};
 
-  const player2Performance = {
-    team: {
-      id: player2.id,
-      name: player2.name,
-      color: player2.team?.color || '#1E3A8A',
-    },
-    stats: {
-      pace: stats.player2Stats.pace,
-      shooting: stats.player2Stats.shooting,
-      passing: stats.player2Stats.passing,
-      dribbling: stats.player2Stats.dribbling,
-      defending: stats.player2Stats.defending,
-      physical: stats.player2Stats.physical
-    }
-  };
+const player2Performance = {
+  team: {
+    id: player2.id,
+    name: player2.name,
+    color: player2.team?.color || '#1E3A8A',
+  },
+  stats: {
+    pace: stats.player2Stats.pace,
+    shooting: stats.player2Stats.shooting,
+    passing: stats.player2Stats.passing,
+    dribbling: stats.player2Stats.dribbling,
+    defending: stats.player2Stats.defending,
+    physical: stats.player2Stats.physical,
+    shots: 0,
+    passes: 0,
+    crosses: 0,
+    corners: 0,
+    duels: 0,
+    fouls: 0,
+    rating: stats.player2Stats.rating
+  }
+};
+
 
   return (
     <div className="bg-black/40 backdrop-blur-lg rounded-xl border border-white/10 p-6 shadow-lg">
