@@ -6,7 +6,7 @@ import { PlusCircle, List, Grid, Database, TableProperties } from 'lucide-react'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import LeagueManagementHeader from "@/components/league-management/LeagueManagementHeader";
 import LeaguesList from "@/components/league-management/LeaguesList";
-import LeagueCreator from "@/components/LeagueCreator";
+import { LeagueCreator } from "@/components/LeagueCreator";
 
 const LeagueManagement = () => {
   const [activeView, setActiveView] = useState<'list' | 'create'>('list');

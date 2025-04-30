@@ -10,11 +10,11 @@ import { toast } from 'sonner';
 import { LeagueData, LeagueConfiguration } from '../types/league';
 
 interface LeagueCreatorProps {
-  onBack: () => void;
-  onSave: (league: LeagueData) => void;
+  onCancel: () => void;
+  onSave?: (league: LeagueData) => void;
 }
 
-export const LeagueCreator: React.FC<LeagueCreatorProps> = ({ onBack, onSave }) => {
+export const LeagueCreator: React.FC<LeagueCreatorProps> = ({ onCancel, onSave }) => {
   const [teams, setTeams] = useState<string[]>([]);
   const [teamInput, setTeamInput] = useState('');
   
@@ -57,15 +57,19 @@ export const LeagueCreator: React.FC<LeagueCreatorProps> = ({ onBack, onSave }) 
       id: Date.now().toString() // Simple ID generation, should use UUID in production
     };
     
-    onSave(leagueData);
-    toast.success("League created successfully");
+    if (onSave) {
+      onSave(leagueData);
+      toast.success("League created successfully");
+    } else {
+      toast.success("League created successfully (no save handler provided)");
+    }
   };
 
   return (
     <div className="animate-fadeIn">
       <div className="flex items-center justify-between mb-6">
         <Button
-          onClick={onBack}
+          onClick={onCancel}
           variant="outline"
           className="gap-2 bg-white/5 border-white/10 text-white hover:bg-white/10"
         >
