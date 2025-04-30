@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, List, Grid, Database, TableProperties } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -17,8 +16,7 @@ const LeagueManagement = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-24 pb-16">
-      <Header />
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4">
         <LeagueManagementHeader 
           onCreateLeague={handleCreateLeague}
