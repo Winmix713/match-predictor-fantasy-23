@@ -27,12 +27,14 @@ interface TeamPerformanceDashboardProps {
 
 export const TeamPerformanceDashboard: React.FC<TeamPerformanceDashboardProps> = ({ team, stats }) => {
   // Prepare form chart data
-  const formChartData = stats.formData.map(item => ({
-    name: item.match,
-    goalsFor: item.goalsFor,
-    goalsAgainst: item.goalsAgainst,
-    result: item.result
-  }));
+ const formChartData = stats.formData.map(item => ({
+  name: item.match,
+  goalsFor: item.goalsFor,
+  goalsAgainst: item.goalsAgainst,
+  result: item.result,
+  value: item.goalsFor // 👈 ez kell a chart komptibilitáshoz
+}));
+
   
   // Prepare top scorers data
   const topScorersData = stats.topScorers.map(scorer => ({
