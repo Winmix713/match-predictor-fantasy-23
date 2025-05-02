@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { EnhancedPlayerCard } from '@/components/football/EnhancedPlayerCard';
 import { PlayerComparisonCard } from '@/components/football/PlayerComparisonCard';
@@ -57,7 +56,7 @@ const FootballAnalytics: React.FC = () => {
     homeScore: 2,
     awayScore: 1,
     date: new Date().toISOString(),
-    status: 'FINISHED',
+    status: 'FINISHED' as const,
     competition: {
       id: '1',
       name: 'Premier League',
@@ -135,15 +134,15 @@ const FootballAnalytics: React.FC = () => {
     team: Math.random() > 0.5 ? 'home' : 'away'
   }));
   
-  // Sample line chart data
+  // Sample line chart data - updated to match expected format
   const lineChartData = [
-    { name: 'Aug', teamA: 6, teamB: 9 },
-    { name: 'Sep', teamA: 14, teamB: 15 },
-    { name: 'Oct', teamA: 20, teamB: 21 },
-    { name: 'Nov', teamA: 26, teamB: 24 },
-    { name: 'Dec', teamA: 33, teamB: 30 },
-    { name: 'Jan', teamA: 39, teamB: 36 },
-    { name: 'Feb', teamA: 45, teamB: 42 },
+    { name: 'Aug', value: 6, teamA: 6, teamB: 9 },
+    { name: 'Sep', value: 14, teamA: 14, teamB: 15 },
+    { name: 'Oct', value: 20, teamA: 20, teamB: 21 },
+    { name: 'Nov', value: 26, teamA: 26, teamB: 24 },
+    { name: 'Dec', value: 33, teamA: 33, teamB: 30 },
+    { name: 'Jan', value: 39, teamA: 39, teamB: 36 },
+    { name: 'Feb', value: 45, teamA: 45, teamB: 42 },
   ];
   
   // Sample area chart data

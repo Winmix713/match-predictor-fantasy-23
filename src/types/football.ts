@@ -1,4 +1,3 @@
-
 export interface Team {
   id: string;
   name: string;
@@ -83,6 +82,16 @@ export type PerformanceStats = {
   corners: number;
   saves: number;
   outs: number;
+  // Add additional fields that might be used in the comparison card
+  pace?: number;
+  shooting?: number;
+  passing?: number;
+  dribbling?: number;
+  defending?: number;
+  physical?: number;
+  duels?: number;
+  fouls?: number;
+  rating?: number;
 };
 
 export type PlayerPerformance = {

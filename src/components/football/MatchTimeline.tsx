@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Clock, AlertTriangle, Users, ArrowRight, Trophy, Flag } from 'lucide-react';
+import type { Match } from '@/types/football';
 
 interface MatchEvent {
   time: number;
@@ -10,15 +11,21 @@ interface MatchEvent {
   assistedBy?: string;
   playerOut?: string;
   playerIn?: string;
+  description?: string;
 }
 
 interface MatchTimelineProps {
   events: MatchEvent[];
-  homeTeam: string;
-  awayTeam: string;
+  match?: Match;
+  homeTeam?: string;
+  awayTeam?: string;
 }
 
-const MatchTimeline: React.FC<MatchTimelineProps> = ({ events, homeTeam, awayTeam }) => {
+export const MatchTimeline: React.FC<MatchTimelineProps> = ({ events, match, homeTeam, awayTeam }) => {
+  // Use team names from match object if provided, otherwise use the props
+  const home = match ? match.homeTeam.name : homeTeam;
+  const away = match ? match.awayTeam.name : awayTeam;
+  
   const getEventIcon = (type: string) => {
     switch (type) {
       case 'kickoff':
@@ -33,6 +40,10 @@ const MatchTimeline: React.FC<MatchTimelineProps> = ({ events, homeTeam, awayTea
         return <Users className="h-4 w-4 text-green-400" />;
       case 'end':
         return <Flag className="h-4 w-4 text-blue-400" />;
+      case 'start':
+        return <Flag className="h-4 w-4 text-blue-400" />;
+      case 'half-time':
+        return <Clock className="h-4 w-4 text-blue-400" />;
       default:
         return <Clock className="h-4 w-4 text-gray-400" />;
     }
@@ -60,6 +71,9 @@ const MatchTimeline: React.FC<MatchTimelineProps> = ({ events, homeTeam, awayTea
                   {event.assistedBy && (
                     <span className="text-sm text-gray-400"> (assisted by {event.assistedBy})</span>
                   )}
+                  {event.description && (
+                    <div className="text-xs text-gray-400 mt-1">{event.description}</div>
+                  )}
                 </div>
               )}
               
@@ -67,6 +81,9 @@ const MatchTimeline: React.FC<MatchTimelineProps> = ({ events, homeTeam, awayTea
                 <div className="text-white">
                   <span className="font-medium">{event.player}</span>
                   <span className="text-sm text-yellow-400 ml-1">Yellow Card</span>
+                  {event.description && (
+                    <div className="text-xs text-gray-400 mt-1">{event.description}</div>
+                  )}
                 </div>
               )}
               
@@ -74,6 +91,9 @@ const MatchTimeline: React.FC<MatchTimelineProps> = ({ events, homeTeam, awayTea
                 <div className="text-white">
                   <span className="font-medium">{event.player}</span>
                   <span className="text-sm text-red-500 ml-1">Red Card</span>
+                  {event.description && (
+                    <div className="text-xs text-gray-400 mt-1">{event.description}</div>
+                  )}
                 </div>
               )}
               
@@ -89,6 +109,14 @@ const MatchTimeline: React.FC<MatchTimelineProps> = ({ events, homeTeam, awayTea
                 <div className="text-gray-400">Kickoff</div>
               )}
               
+              {event.type === 'start' && (
+                <div className="text-gray-400">Match Start</div>
+              )}
+              
+              {event.type === 'half-time' && (
+                <div className="text-gray-400">Half Time</div>
+              )}
+              
               {event.type === 'end' && (
                 <div className="text-gray-400">Full Time</div>
               )}
@@ -96,9 +124,9 @@ const MatchTimeline: React.FC<MatchTimelineProps> = ({ events, homeTeam, awayTea
             
             <div className="text-sm text-right w-24">
               {event.team === 'home' ? (
-                <span className="text-blue-400">{homeTeam}</span>
+                <span className="text-blue-400">{home}</span>
               ) : (
-                <span className="text-red-400">{awayTeam}</span>
+                <span className="text-red-400">{away}</span>
               )}
             </div>
           </div>
@@ -107,5 +135,3 @@ const MatchTimeline: React.FC<MatchTimelineProps> = ({ events, homeTeam, awayTea
     </div>
   );
 };
-
-export default MatchTimeline;
